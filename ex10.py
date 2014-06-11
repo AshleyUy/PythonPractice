@@ -16,3 +16,6 @@ print tabby_cat
 print persian_cat
 print backslash_cat
 print fat_cat
+print "Extra points:\n"
+print '%r' % (fat_cat)
+print '%s' % (fat_cat)
