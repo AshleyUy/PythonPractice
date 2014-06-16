@@ -11,21 +11,26 @@ class Actions (object):
 		for x in range(0,len(Actions.choice)):
 			print Actions.choice[x],
 		'''
-		print "[1]ROCK\t[2]SCISSORS\t[3]PAPER"
+		print "\n[1]ROCK\t[2]SCISSORS\t[3]PAPER"
 		print "\nChoose wisely, for thus determines thy fate of all Middle Kingdom!"
 		ans=int(raw_input(">"))
-		print "You have drawn the %s!" %Actions.choice[ans]
-		#print Actions.choice[ans.upper()]
-		return ans
+		if ans > 4 or ans < 0:
+			print "\nILLITERATE PIG!\n"
+			Actions().accept();
+		else:
+			print "You have drawn the %s!" %Actions.choice[ans]
+			#print Actions.choice[ans.upper()]
+			return ans
 
 	def generate (self):
-		print "Thy oponent hasth chosen!"
+		print "\nThy oponent hasth chosen!"
 		random = randint(1,len(self.choice))
 		gen=Actions.choice[random]
 		print "%s hasth been drawn!" %gen
 		return random
 
 	def compare (self, user, bot):
+		print "\n"
 		if user == bot:
 			print "IT IS A DRAW"
 		elif user == 1 and bot ==2:
@@ -42,12 +47,30 @@ class Actions (object):
 			print "THOU BACKSIDE HAS BEEN ACQUIRED BY THINE OPPONENT!"
 		else:
 			print "THOU BACKSIDE HAS BEEN ACQUIRED BY THINE OPPONENT!"
-		
-		
 
-action=Actions()
+	def play(self):
+		
+		action=Actions()
+		my = action.accept()
+		bot = action.generate()
+		result = action.compare(my, bot)
 
-my = action.accept()
-bot = action.generate()
-result = action.compare(my, bot)
+	def again(self):
+
+		print "\nDost thou desire to duel again?"
+		print "[1]YES\t[2]NO"
+		again = int(raw_input(">"))
+		if again < 3 or again > 0:
+			if again == 1:
+				Actions().play()
+			else:
+				quit()
+		else:
+			print "ILLITERATE PIG!"
+			Actions().again() 
+
+Actions().play()
+Actions().again()
+
+
 
